@@ -17,23 +17,13 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 
-try {
+const Prettier = async () => {
   const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("token");
 
   if (!token)
-    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.error)(
+    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(
       "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference."
     );
-
-  let myOutput = "";
-
-  const options = {};
-  options.listeners = {
-    stdout: (data) => {
-      myOutput += data.toString();
-    },
-  };
-  options.cwd = "./lib";
 
   const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npm i prettier -D");
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
@@ -42,31 +32,25 @@ try {
     const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npx prettier --check .");
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
   } catch (err) {
-    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(
-      "Your code does not meet Prettier Standards. Please format your code."
-    );
+    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("Your code is not formatted correctly. Please format your code.");
   }
-
-  console.log("RESULT", result);
 
   const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(token);
 
-  // const owner = context.payload.repository.owner;
   const name = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.name;
   const number = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.number;
   const owner = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.owner.login;
 
-  const { data } = await octokit.rest.pulls.get({
+  await octokit.rest.pulls.createReview({
     owner: owner,
     repo: name,
     pull_number: number,
+    event: "REQUEST_CHANGES",
+    body: "The code is not formatted correctly, please format your code and push your changes again.",
   });
+};
 
-  console.log("DATA", data);
-} catch (error) {
-  console.log(error);
-  (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
-}
+await Prettier();
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
