@@ -1,9 +1,9 @@
 name: "Checking Formatting with Prettier"
 description: "Check all applicable files for proper formatting"
-# inputs:
-#   token:
-#     description: "Github Token"
-#     required: true
+inputs:
+  token:
+    description: "Github Token"
+    required: true
 runs:
   using: "node20"
   main: "dist/index.js"
