@@ -15,7 +15,7 @@ try {
     pull_number: 1,
   });
 
-  console.log(output);
+  console.log(data);
 } catch (error) {
   setFailed(error.message);
 }
