@@ -1,6 +1,6 @@
 import { getInput, setOutput, setFailed, error } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
-import { exec } from "@actions/exec";
+import { exec, getExecOutput } from "@actions/exec";
 
 try {
   const token = getInput("token");
