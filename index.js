@@ -1,5 +1,6 @@
 import { getInput, setOutput, setFailed, error } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
+import { exec } from "@actions/exec";
 
 try {
   const token = getInput("token");
@@ -8,6 +9,19 @@ try {
     error(
       "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference."
     );
+
+  let myOutput = "";
+
+  const options = {};
+  options.listeners = {
+    stdout: (data) => {
+      myOutput += data.toString();
+    },
+  };
+  options.cwd = "./lib";
+
+  await exec("npm i prettier -D");
+  await exec("prettier --check .", options);
 
   const octokit = getOctokit(token);
 
