@@ -15,12 +15,15 @@ const prettier = async () => {
     const { stdout } = await getExecOutput("npx prettier --check .");
     info(stdout);
   } catch (err) {
+    console.log(context.payload);
+
     await exec("npx prettier --write .");
-    await exec(`git config user.name "acm-ucr"`);
-    await exec(`git config user.email "contact.acmucr@gmail.com"`);
-    await exec("git add .");
-    await exec(`git commit -m "automated formatting"`);
-    await exec("git push");
+    await exec(
+      `git config user.name "acm-ucr" && git config user.email "contact.acmucr@gmail.com"`
+    );
+    await exec(
+      `git add . && git commit -m "automated formatting" && git push origin`
+    );
     setFailed("Your code is not formatted correctly. Please format your code.");
   }
 };
