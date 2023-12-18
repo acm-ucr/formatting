@@ -1,14 +1,20 @@
 import { getInput, setOutput, setFailed } from "@actions/core";
-import { context } from "@actions/github";
-import { execSync } from "child_process";
+import { context, getOctokit } from "@actions/github";
 
 try {
-  const gitUrl = context.payload.repository.git_url;
+  const token = getInput("token");
+
+  const octokit = getOctokit(token);
+
+  // const owner = context.payload.repository.owner;
   const name = context.payload.repository.name;
 
-  execSync(`git clone ${gitUrl} && cd ${name}`);
-  execSync(`npm i prettier -D`);
-  const output = execSync(`npm run format`);
+  const { data } = await octokit.rest.pulls.get({
+    owner: "shahdivyank",
+    repo: name,
+    pull_number: 1,
+  });
+
   console.log(output);
 } catch (error) {
   setFailed(error.message);
