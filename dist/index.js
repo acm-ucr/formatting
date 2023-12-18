@@ -35,7 +35,9 @@ const prettier = async () => {
 
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("npx prettier --write .");
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
-      `git config --global user.name "acm-ucr" && git config --global user.email "contact.acmucr@gmail.com"`
+      JSON.stringify(
+        `git config --global user.name "acm-ucr" && git config --global user.email "contact.acmucr@gmail.com"`
+      )
     );
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
       `git add . && git commit -m "automated formatting" && git push origin ${branch}`
