@@ -7,7 +7,7 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = new Date().toTimeString();
   setOutput("time", time);
-  console.log(`The event payload: ${JSON.stringify(payload.base)}`);
+  console.log(`The event payload: ${JSON.stringify(payload)}`);
 } catch (error) {
   setFailed(error.message);
 }
