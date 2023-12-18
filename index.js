@@ -13,15 +13,17 @@ try {
 
   // const owner = context.payload.repository.owner;
   const name = context.payload.repository.name;
+  const number = context.payload.repository.number;
   console.log(name, context.payload);
 
   const { data } = await octokit.rest.pulls.get({
     owner: "shahdivyank",
     repo: name,
-    pull_number: 1,
+    pull_number: number,
   });
 
   console.log(data);
 } catch (error) {
+  console.log(error);
   setFailed(error.message);
 }
