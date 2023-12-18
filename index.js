@@ -21,7 +21,8 @@ try {
   options.cwd = "./lib";
 
   await exec("npm i prettier -D");
-  await exec("prettier --check .", options);
+  const result = await getExecOutput("prettier --check .");
+  console.log(result);
 
   const octokit = getOctokit(token);
 
