@@ -26,16 +26,18 @@ try {
 
   // const owner = context.payload.repository.owner;
   const name = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.name;
-  console.log(name, _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload);
+  const number = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.number;
+  console.log("NAME", name, _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload);
 
   const { data } = await octokit.rest.pulls.get({
     owner: "shahdivyank",
     repo: name,
-    pull_number: 1,
+    pull_number: number,
   });
 
-  console.log(data);
+  console.log("DATA", data);
 } catch (error) {
+  console.log(error);
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
 
