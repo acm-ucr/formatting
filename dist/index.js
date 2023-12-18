@@ -31,7 +31,8 @@ const prettier = async () => {
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
   } catch (err) {
     const branch = _actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.pull_request.head.ref;
-    console.log(_actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.pull_request.head.ref);
+    const commit = _actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.after;
+    console.log(commit);
 
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("npx prettier --write .");
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git config --global user.name "acm-ucr"`);

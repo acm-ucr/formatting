@@ -16,7 +16,8 @@ const prettier = async () => {
     info(stdout);
   } catch (err) {
     const branch = context.payload.pull_request.head.ref;
-    console.log(context.payload.pull_request.head.ref);
+    const commit = context.payload.after;
+    console.log(commit);
 
     await exec("npx prettier --write .");
     await exec(`git config --global user.name "acm-ucr"`);
