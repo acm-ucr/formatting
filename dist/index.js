@@ -30841,13 +30841,13 @@ __nccwpck_require__.r(__webpack_exports__);
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const nameToGreet = _actions_core__WEBPACK_IMPORTED_MODULE_0__.core.getInput("who-to-greet");
+  const nameToGreet = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("who-to-greet");
   console.log(`Hello ${nameToGreet}!`);
   const time = new Date().toTimeString();
-  _actions_core__WEBPACK_IMPORTED_MODULE_0__.core.setOutput("time", time);
-  console.log(`The event payload: ${JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.base)}`);
+  (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)("time", time);
+  console.log(`The event payload: ${JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.payload.base)}`);
 } catch (error) {
-  _actions_core__WEBPACK_IMPORTED_MODULE_0__.core.setFailed(error.message);
+  (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
 
 })();
