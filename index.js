@@ -1,5 +1,5 @@
 import { getInput, setOutput, setFailed } from "@actions/core";
-import { payload } from "@actions/github";
+import { context } from "@actions/github";
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -7,7 +7,7 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = new Date().toTimeString();
   setOutput("time", time);
-  console.log(`The event payload: ${JSON.stringify(payload)}`);
+  console.log(`The event payload: ${JSON.stringify(context.payload)}`);
 } catch (error) {
   setFailed(error.message);
 }
