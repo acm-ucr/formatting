@@ -32,22 +32,21 @@ const Prettier = async () => {
     const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npx prettier --check .");
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
   } catch (err) {
+    const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(token);
+
+    const name = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.name;
+    const number = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.number;
+    const owner = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.owner.login;
+
+    await octokit.rest.pulls.createReview({
+      owner: owner,
+      repo: name,
+      pull_number: number,
+      event: "REQUEST_CHANGES",
+      body: "The code is not formatted correctly, please format your code and push your changes again.",
+    });
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("Your code is not formatted correctly. Please format your code.");
   }
-
-  const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(token);
-
-  const name = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.name;
-  const number = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.number;
-  const owner = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.owner.login;
-
-  await octokit.rest.pulls.createReview({
-    owner: owner,
-    repo: name,
-    pull_number: number,
-    event: "REQUEST_CHANGES",
-    body: "The code is not formatted correctly, please format your code and push your changes again.",
-  });
 };
 
 await Prettier();
