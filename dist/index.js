@@ -26,16 +26,16 @@ const prettier = async () => {
   const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.getExecOutput)("npm i prettier -D");
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
 
-  console.log(_actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload);
-
   try {
     const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.getExecOutput)("npx prettier --check .");
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
   } catch (err) {
-    // await exec("npx prettier --write .");
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("npx prettier --write .");
     // await exec(`git config --global user.name "your username"`);
     // await exec(`git config --global user.email "your email"`);
-    // await exec("git add .");
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("git add .");
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git commit -m "automated formatting"`);
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("git push");
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("Your code is not formatted correctly. Please format your code.");
   }
 };

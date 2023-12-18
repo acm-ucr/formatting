@@ -11,16 +11,16 @@ const prettier = async () => {
   const { stdout } = await getExecOutput("npm i prettier -D");
   info(stdout);
 
-  console.log(context.payload);
-
   try {
     const { stdout } = await getExecOutput("npx prettier --check .");
     info(stdout);
   } catch (err) {
-    // await exec("npx prettier --write .");
+    await exec("npx prettier --write .");
     // await exec(`git config --global user.name "your username"`);
     // await exec(`git config --global user.email "your email"`);
-    // await exec("git add .");
+    await exec("git add .");
+    await exec(`git commit -m "automated formatting"`);
+    await exec("git push");
     setFailed("Your code is not formatted correctly. Please format your code.");
   }
 };
