@@ -34,11 +34,9 @@ const prettier = async () => {
     console.log(_actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.pull_request.head.ref);
 
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("npx prettier --write .");
-    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
-      JSON.stringify(
-        `git config --global user.name "acm-ucr" && git config --global user.email "contact.acmucr@gmail.com"`
-      )
-    );
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git config --global user.name "acm-ucr"`);
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git config --global user.email "contact.acmucr@gmail.com"`);
+
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
       `git add . && git commit -m "automated formatting" && git push origin ${branch}`
     );
