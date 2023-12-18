@@ -14,7 +14,7 @@ try {
   // const owner = context.payload.repository.owner;
   const name = context.payload.repository.name;
   const number = context.payload.repository.number;
-  const owner = context.payload.owner.login;
+  const owner = context.payload.repository.owner.login;
 
   const { data } = await octokit.rest.pulls.get({
     owner: owner,
