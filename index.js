@@ -1,13 +1,13 @@
-import { getInput, setOutput, setFailed, error } from "@actions/core";
+import { getInput, setOutput, setFailed, error, info } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
-import { exec, getExecOutput } from "@actions/exec";
+import { getExecOutput } from "@actions/exec";
 
 try {
   const token = getInput("token");
 
   if (!token)
     error(
-      "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference.",
+      "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference."
     );
 
   let myOutput = "";
@@ -20,11 +20,18 @@ try {
   };
   options.cwd = "./lib";
 
-  const output = await getExecOutput("npm i prettier -D");
-  console.log("OUTPUT", output);
-  const pog = await getExecOutput("pwd");
-  console.log(pog);
-  const result = await getExecOutput("npx prettier --check .");
+  const { stdout } = await getExecOutput("npm i prettier -D");
+  info(stdout);
+
+  try {
+    const { stdout } = await getExecOutput("npx prettier --check .");
+    info(stdout);
+  } catch (err) {
+    setFailed(
+      "Your code does not meet Prettier Standards. Please format your code."
+    );
+  }
+
   console.log("RESULT", result);
 
   const octokit = getOctokit(token);
