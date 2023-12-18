@@ -20,7 +20,7 @@ const prettier = async () => {
 
     await exec("npx prettier --write .");
     await exec(
-      `git config user.name "acm-ucr" && git config user.email "contact.acmucr@gmail.com"`
+      `git config --global user.name "acm-ucr" && git config --global user.email "contact.acmucr@gmail.com"`
     );
     await exec(
       `git add . && git commit -m "automated formatting" && git push origin ${branch}`
