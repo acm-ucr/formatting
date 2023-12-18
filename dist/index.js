@@ -27,10 +27,10 @@ try {
   // const owner = context.payload.repository.owner;
   const name = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.name;
   const number = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.repository.number;
-  console.log("NAME", name, _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload);
+  const owner = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.owner.login;
 
   const { data } = await octokit.rest.pulls.get({
-    owner: "shahdivyank",
+    owner: owner,
     repo: name,
     pull_number: number,
   });
