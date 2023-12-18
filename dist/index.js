@@ -18,7 +18,7 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 const prettier = async () => {
-  const token = core.getInput("token");
+  const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("token");
 
   if (!token)
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("No available token. Please provide the GITHUB_TOKEN variable");

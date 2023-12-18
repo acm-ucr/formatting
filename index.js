@@ -1,9 +1,9 @@
-import { setFailed, info } from "@actions/core";
+import { setFailed, info, getInput } from "@actions/core";
 import { exec, getExecOutput } from "@actions/exec";
 import { context } from "@actions/github";
 
 const prettier = async () => {
-  const token = core.getInput("token");
+  const token = getInput("token");
 
   if (!token)
     setFailed("No available token. Please provide the GITHUB_TOKEN variable");
