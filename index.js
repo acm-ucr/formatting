@@ -20,9 +20,10 @@ try {
   };
   options.cwd = "./lib";
 
-  await exec("npm i prettier -D");
+  const output = await getExecOutput("npm i prettier -D");
+  console.log("OUTPUT", output);
   const result = await getExecOutput("npx prettier --check .");
-  console.log(result);
+  console.log("RESULT", result);
 
   const octokit = getOctokit(token);
 

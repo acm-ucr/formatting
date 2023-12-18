@@ -35,9 +35,10 @@ try {
   };
   options.cwd = "./lib";
 
-  await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.exec)("npm i prettier -D");
+  const output = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npm i prettier -D");
+  console.log("OUTPUT", output);
   const result = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npx prettier --check .");
-  console.log(result);
+  console.log("RESULT", result);
 
   const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(token);
 
