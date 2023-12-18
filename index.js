@@ -8,6 +8,7 @@ try {
 
   // const owner = context.payload.repository.owner;
   const name = context.payload.repository.name;
+  console.log(name, context.payload);
 
   const { data } = await octokit.rest.pulls.get({
     owner: "shahdivyank",
