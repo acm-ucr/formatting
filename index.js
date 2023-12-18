@@ -16,8 +16,8 @@ const prettier = async () => {
     info(stdout);
   } catch (err) {
     await exec("npx prettier --write .");
-    // await exec(`git config --global user.name "your username"`);
-    // await exec(`git config --global user.email "your email"`);
+    await exec(`git config user.name "acm-ucr"`);
+    await exec(`git config user.email "contact.acmucr@gmail.com"`);
     await exec("git add .");
     await exec(`git commit -m "automated formatting"`);
     await exec("git push");
