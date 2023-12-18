@@ -8,7 +8,7 @@ try {
   const time = new Date().toTimeString();
   setOutput("time", time);
   console.log(
-    `The event payload: ${JSON.stringify(context.payload.base.repo.git_url)}`
+    `The event payload: ${JSON.stringify(context.payload.repository.git_url)}`
   );
 } catch (error) {
   setFailed(error.message);
