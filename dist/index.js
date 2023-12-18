@@ -30845,11 +30845,8 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = new Date().toTimeString();
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.core.setOutput("time", time);
-  const payload = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload, undefined, 2);
   console.log(
-    `The event payload: ${payload} ${JSON.stringify(
-      _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.base.repo.git_url
-    )}`
+    `The event payload: ${JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.base.repo.git_url)}`
   );
 } catch (error) {
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.core.setFailed(error.message);
