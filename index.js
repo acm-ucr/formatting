@@ -1,5 +1,5 @@
-import core from "@actions/core";
-import context from "@actions/github";
+const core = require("@actions/core");
+const github = require("@actions/github");
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -7,7 +7,7 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = new Date().toTimeString();
   core.setOutput("time", time);
-  console.log(`The event payload: ${JSON.stringify(context.payload.base)}`);
+  console.log(`The event payload: ${JSON.stringify(github.payload.base)}`);
 } catch (error) {
   core.setFailed(error.message);
 }
