@@ -22,9 +22,10 @@ const prettier = async () => {
     await exec(`git config --global user.name "acm-ucr"`);
     await exec(`git config --global user.email "contact.acmucr@gmail.com"`);
 
-    await exec(
-      `git add . && git commit -m "automated formatting" && git push origin ${branch}`
-    );
+    await exec(`git add .`);
+    await exec(`git commit -m "automated formatting"`);
+    await exec(` git push origin ${branch}`);
+
     setFailed("Your code is not formatted correctly. Please format your code.");
   }
 };

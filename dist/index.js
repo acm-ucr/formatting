@@ -37,9 +37,10 @@ const prettier = async () => {
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git config --global user.name "acm-ucr"`);
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git config --global user.email "contact.acmucr@gmail.com"`);
 
-    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
-      `git add . && git commit -m "automated formatting" && git push origin ${branch}`
-    );
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git add .`);
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git commit -m "automated formatting"`);
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(` git push origin ${branch}`);
+
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("Your code is not formatted correctly. Please format your code.");
   }
 };
