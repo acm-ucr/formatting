@@ -18,10 +18,10 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 const prettier = async () => {
-  const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("token");
+  // const token = getInput("token");
 
-  if (!token)
-    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("No available token. Please provide the GITHUB_TOKEN variable");
+  // if (!token)
+  //   setFailed("No available token. Please provide the GITHUB_TOKEN variable");
 
   const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.getExecOutput)("npm i prettier -D");
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
@@ -30,14 +30,15 @@ const prettier = async () => {
     const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.getExecOutput)("npx prettier --check .");
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
   } catch (err) {
-    console.log(_actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload);
+    const branch = _actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.pull_request.head.ref;
+    console.log(_actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.pull_request.head.ref);
 
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("npx prettier --write .");
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
       `git config user.name "acm-ucr" && git config user.email "contact.acmucr@gmail.com"`
     );
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(
-      `git add . && git commit -m "automated formatting" && git push origin`
+      `git add . && git commit -m "automated formatting" && git push origin ${branch}`
     );
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("Your code is not formatted correctly. Please format your code.");
   }
