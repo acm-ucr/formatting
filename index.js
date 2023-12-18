@@ -1,15 +1,15 @@
 import { getInput, setOutput, setFailed } from "@actions/core";
 import { context } from "@actions/github";
+import { execSync } from "child_process";
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = getInput("who-to-greet");
-  console.log(`Hello ${nameToGreet}!`);
-  const time = new Date().toTimeString();
-  setOutput("time", time);
-  console.log(
-    `The event payload: ${JSON.stringify(context.payload.repository.git_url)}`
-  );
+  const gitUrl = context.payload.repository.git_url;
+  const name = context.payload.repository.name;
+
+  execSync(`git clone ${gitUrl} && cd ${name}`);
+  execSync(`npm i prettier -D`);
+  const output = execSync(`npm run format`);
+  console.log(output);
 } catch (error) {
   setFailed(error.message);
 }
