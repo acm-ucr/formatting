@@ -1,0 +1,12 @@
+on:
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    name: Formatting
+    steps:
+      - name: Running Prettier
+        uses: ./
