@@ -17,7 +17,7 @@ const prettier = async () => {
   } catch (err) {
     const branch = context.payload.pull_request.head.ref;
 
-    await exec(`git checkout ${branch}`);
+    await exec(`gh pr checkout ${branch}`);
 
     await exec("npx prettier --write .");
     await exec(`git config --global user.name "acm-ucr"`);

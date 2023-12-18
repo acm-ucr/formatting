@@ -32,7 +32,7 @@ const prettier = async () => {
   } catch (err) {
     const branch = _actions_github__WEBPACK_IMPORTED_MODULE_2__.context.payload.pull_request.head.ref;
 
-    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git checkout ${branch}`);
+    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`gh pr checkout ${branch}`);
 
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)("npx prettier --write .");
     await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`git config --global user.name "acm-ucr"`);
