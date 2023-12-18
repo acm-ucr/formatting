@@ -14,7 +14,7 @@ try {
   // const owner = context.payload.repository.owner;
   const name = context.payload.repository.name;
   const number = context.payload.repository.number;
-  console.log(name, context.payload);
+  console.log("NAME", name, context.payload);
 
   const { data } = await octokit.rest.pulls.get({
     owner: "shahdivyank",
@@ -22,7 +22,7 @@ try {
     pull_number: number,
   });
 
-  console.log(data);
+  console.log("DATA", data);
 } catch (error) {
   console.log(error);
   setFailed(error.message);
