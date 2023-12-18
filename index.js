@@ -22,6 +22,8 @@ try {
 
   const output = await getExecOutput("npm i prettier -D");
   console.log("OUTPUT", output);
+  const pog = await getExecOutput("pwd");
+  console.log(pog);
   const result = await getExecOutput("npx prettier --check .");
   console.log("RESULT", result);
 

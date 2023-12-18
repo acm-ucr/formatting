@@ -37,6 +37,8 @@ try {
 
   const output = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npm i prettier -D");
   console.log("OUTPUT", output);
+  const pog = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("pwd");
+  console.log(pog);
   const result = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_2__.getExecOutput)("npx prettier --check .");
   console.log("RESULT", result);
 
