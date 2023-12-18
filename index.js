@@ -1,8 +1,13 @@
-import { getInput, setOutput, setFailed } from "@actions/core";
+import { getInput, setOutput, setFailed, error } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
 
 try {
   const token = getInput("token");
+
+  if (!token)
+    error(
+      "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference."
+    );
 
   const octokit = getOctokit(token);
 
