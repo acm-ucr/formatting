@@ -7,7 +7,7 @@ try {
 
   if (!token)
     error(
-      "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference."
+      "There is no Github Token provided. Please refer to the Prettier-Action Documentation for reference.",
     );
 
   let myOutput = "";
