@@ -5,6 +5,10 @@
 ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
+## Description
+
+A custom Github Action for `acm-ucr` repositories which uses Prettier to check formatting.
+
 ## Usage
 
 ```yaml
@@ -12,7 +16,7 @@ steps:
   - name: Checkout
     uses: actions/checkout@v4
   - name: Running Prettier
-    uses: acm-ucr/formatting
+    uses: acm-ucr/formatting@v2
 ```
 
 ## Node.js
