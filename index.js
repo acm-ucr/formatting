@@ -1,13 +1,7 @@
-import { setFailed, info, getInput } from "@actions/core";
-import { exec, getExecOutput } from "@actions/exec";
-import { context } from "@actions/github";
+import { setFailed, info, error } from "@actions/core";
+import { getExecOutput } from "@actions/exec";
 
 const prettier = async () => {
-  // const token = getInput("token");
-
-  // if (!token)
-  //   setFailed("No available token. Please provide the GITHUB_TOKEN variable");
-
   const { stdout } = await getExecOutput("npm i prettier -D");
   info(stdout);
 
@@ -15,19 +9,10 @@ const prettier = async () => {
     const { stdout } = await getExecOutput("npx prettier --check .");
     info(stdout);
   } catch (err) {
-    const branch = context.payload.pull_request.head.ref;
-
-    await exec(`gh pr checkout ${branch}`);
-
-    await exec("npx prettier --write .");
-    await exec(`git config --global user.name "acm-ucr"`);
-    await exec(`git config --global user.email "contact.acmucr@gmail.com"`);
-
-    await exec(`git add .`);
-    await exec(`git commit -m "automated formatting"`);
-    await exec(` git push origin ${branch}`);
-
-    setFailed("Your code is not formatted correctly. Please format your code.");
+    error(err);
+    setFailed(
+      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`"
+    );
   }
 };
 

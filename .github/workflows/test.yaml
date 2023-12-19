@@ -12,7 +12,3 @@ jobs:
         uses: actions/checkout@v4
       - name: Running Prettier
         uses: ./
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          GH_TOKEN: ${{ github.token }}
