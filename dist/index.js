@@ -14,7 +14,7 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 
-const prettier = async () => {
+const formatting = async () => {
   const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.getExecOutput)("npm i prettier -D");
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(stdout);
 
@@ -24,12 +24,12 @@ const prettier = async () => {
   } catch (err) {
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.error)(err);
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(
-      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`",
+      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`"
     );
   }
 };
 
-await prettier();
+await formatting();
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
