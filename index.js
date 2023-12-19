@@ -11,7 +11,7 @@ const prettier = async () => {
   } catch (err) {
     error(err);
     setFailed(
-      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`"
+      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`",
     );
   }
 };
