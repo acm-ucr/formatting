@@ -6,7 +6,8 @@
   "scripts": {
     "build": "ncc build index.js --license licenses.txt",
     "check": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "eslint": "eslint . --ext js --ext ts"
   },
   "repository": {
     "type": "git",
