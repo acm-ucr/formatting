@@ -1,3 +1,5 @@
+name: Formatting Action
+
 on:
   pull_request:
     branches: [main, dev]
