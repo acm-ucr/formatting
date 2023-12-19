@@ -1,15 +1,19 @@
-import { getInput, setOutput, setFailed } from "@actions/core";
-import { context } from "@actions/github";
-import { execSync } from "child_process";
+import { setFailed, info, error } from "@actions/core";
+import { getExecOutput } from "@actions/exec";
 
-try {
-  const gitUrl = context.payload.repository.git_url;
-  const name = context.payload.repository.name;
+const prettier = async () => {
+  const { stdout } = await getExecOutput("npm i prettier -D");
+  info(stdout);
 
-  execSync(`git clone ${gitUrl} && cd ${name}`);
-  execSync(`npm i prettier -D`);
-  const output = execSync(`npm run format`);
-  console.log(output);
-} catch (error) {
-  setFailed(error.message);
-}
+  try {
+    const { stdout } = await getExecOutput("npx prettier --check .");
+    info(stdout);
+  } catch (err) {
+    error(err);
+    setFailed(
+      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`",
+    );
+  }
+};
+
+await prettier();

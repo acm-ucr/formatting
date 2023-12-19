@@ -4,21 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js --license licenses.txt"
+    "build": "ncc build index.js --license licenses.txt",
+    "check": "prettier --check .",
+    "format": "prettier --write .",
+    "eslint": "eslint . --ext js --ext ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acm-ucr/prettier-action.git"
+    "url": "git+https://github.com/acm-ucr/formatting.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/acm-ucr/prettier-action/issues"
+    "url": "https://github.com/acm-ucr/formatting/issues"
   },
-  "homepage": "https://github.com/acm-ucr/prettier-action#readme",
+  "homepage": "https://github.com/acm-ucr/formatting#readme",
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@actions/github": "^6.0.0"
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^6.0.0",
+    "eslint-config-prettier": "^9.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-google": "^0.14.0",
+    "prettier": "^3.1.1"
   }
 }
