@@ -1,7 +1,7 @@
 import { setFailed, info, error } from "@actions/core";
 import { getExecOutput } from "@actions/exec";
 
-const prettier = async () => {
+const formatting = async () => {
   const { stdout } = await getExecOutput("npm i prettier -D");
   info(stdout);
 
@@ -11,9 +11,9 @@ const prettier = async () => {
   } catch (err) {
     error(err);
     setFailed(
-      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`",
+      "Your code is not formatted correctly. Please format using `npm run format` or `npx prettier --write .`"
     );
   }
 };
 
-await prettier();
+await formatting();
