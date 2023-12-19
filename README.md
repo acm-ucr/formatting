@@ -15,7 +15,7 @@ A custom Github Action for `acm-ucr` repositories which uses Prettier to check f
 steps:
   - name: Checkout
     uses: actions/checkout@v4
-  - name: Running Prettier
+  - name: Running Formatting Check
     uses: acm-ucr/formatting@v2
 ```
 
