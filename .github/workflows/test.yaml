@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Running Prettier
+      - name: Running Formatting
         uses: ./
